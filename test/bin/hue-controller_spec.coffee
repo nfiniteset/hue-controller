@@ -5,7 +5,7 @@ exec = require('child_process').exec
 path = require('path')
 
 describe 'hue-controller bin', ->
-  cmd = "node #{path.join(__dirname, '../bin/hue-controller')} "
+  cmd = "node #{path.join(__dirname, '../../bin/hue-controller')} "
   console.log(cmd)
 
   it '--help should run without errors', (done) ->

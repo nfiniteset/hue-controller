@@ -5,9 +5,10 @@ REPORTER = "dot"
 task "test", "run tests", ->
   exec "NODE_ENV=test ./node_modules/.bin/mocha
     --compilers coffee:coffee-script
+    --recursive
     --reporter #{REPORTER}
     --require coffee-script
-    --require test/test_helper.coffee
+    --require test/support/test_helper.coffee
     --colors
   ", (err, output) ->
     console.log output
