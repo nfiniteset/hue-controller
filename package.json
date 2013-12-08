@@ -7,7 +7,7 @@
     "hue-controller": "./bin/hue-controller"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "cake test"
   },
   "author": {
     "name": "Sean Durham",
@@ -21,9 +21,12 @@
   "license": "MIT",
   "bugs": "https://github.com/nfiniteset/hue-controller/issues",
   "dependencies": {
+    "coffee-script": "~1.6.3",
     "commander": "~2.0.0",
     "autocmdr": "~0.0.4"
   },
   "devDependencies": {
+    "mocha": "~1.15.1",
+    "chai": "~1.8.1"
   }
 }
