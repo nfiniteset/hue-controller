@@ -3,10 +3,10 @@
 
 var program  = require('commander');
 
+require('coffee-script');
 require('autocmdr/lib/logger')(program);
 require('autocmdr/lib/loader')(program);
 require('autocmdr/lib/package')(program);
-
 
 program
   .on('*', function(name) {
