@@ -1,0 +1,29 @@
+{
+  "name": "hue-controller",
+  "version": "0.0.0",
+  "description": "A commander CLI app",
+  "private": true,
+  "bin": {
+    "hue-controller": "./bin/hue-controller"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": {
+    "name": "Sean Durham",
+    "email": "sean@sdurham.net",
+    "url": "https://github.com/nfiniteset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nfiniteset/hue-controller"
+  },
+  "license": "MIT",
+  "bugs": "https://github.com/nfiniteset/hue-controller/issues",
+  "dependencies": {
+    "commander": "~2.0.0",
+    "autocmdr": "~0.0.4"
+  },
+  "devDependencies": {
+  }
+}

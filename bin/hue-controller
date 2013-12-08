@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+'use strict';
+
+var program  = require('commander');
+
+require('autocmdr/lib/logger')(program);
+require('autocmdr/lib/loader')(program);
+require('autocmdr/lib/package')(program);
+
+
+program
+	.on('*', function(name) {
+		console.log('\''+name+'\' is not a known command. See \'hue-controller --help\':');
+		program.outputHelp();
+		process.exit(1);
+	});
+
+
+program
+	.parse(process.argv);
+
+if (program.args.length < 1 ) {
+	console.log('No command specified. See \'hue-controller --help\':');
+	program.outputHelp();
+	process.exit(1);
+}
