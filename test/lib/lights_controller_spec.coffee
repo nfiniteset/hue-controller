@@ -1,77 +1,111 @@
+chai = require('chai')
+spies = require('chai-spies')
+chai.use(spies)
+
 LightsController = require('../../lib/lights_controller')
+MockLightsCollection = require("../support/mock_lights_collection.coffee")
 
 describe 'LightsController', ->
-  controller = undefined
-  lightGroup = undefined
-
-  controller = ->
-    new LightsController(lightGroup)
 
   beforeEach ->
-    lightGroup = new MockLightGroup
+    @lightState = { on: undefined, bri: 75 }
+
+    @controller = ->
+      unless @_controller
+        @_controller = new LightsController(@lights())
+      @_controller
+
+    @lights = ->
+      unless @_lights
+        @_lights = new MockLightsCollection({}, [], @lightState)
+      @_lights
 
   describe 'toggling the lights', ->
-    executeCommand = ->
-      controller().toggle()
+    beforeEach ->
+      @executeCommand = ->
+        @controller().toggle()
 
     describe 'when the lights are off', ->
       beforeEach ->
-        lightGroup.on = false
-        executeCommand()
+        @lightState.on = false
+        chai.spy(@lights().setOn)
+        @executeCommand()
 
       it 'turns on the lights', ->
-        expect(lightGroup.turnOn).to.have.been.called()
+        expect(@lights().setOn).to.have.been.called.with(true)
 
     describe 'when the lights are on', ->
       beforeEach ->
-        lightGroup.on = true
-        executeCommand()
+        @lightState.on = true
+        chai.spy(@lights().setOn)
+        @executeCommand()
 
       it 'turns off the lights', ->
-        expect(lightGroup.turnOff).to.have.been.called()
+        expect(@lights().setOn).to.have.been.called.with(false)
 
   describe 'increasing the brightness', ->
-    executeCommand = ->
-      controller().increaseBrightness()
+    beforeEach ->
+      @executeCommand = ->
+        @controller().increaseBrightness()
 
     describe 'when the lights are off', ->
       beforeEach ->
-        lightGroup.on = false
-        executeCommand()
+        @lightState.on = false
+        chai.spy(@lights().setOn)
+        @executeCommand()
 
       it 'turns on the lights', ->
-        expect(lightGroup.turnOn).to.have.been.called()
+        expect(@lights().setOn).to.have.been.called.with(true)
 
     describe 'when the lights are on', ->
       initialBrightness = 50
+      arguedBrightness = undefined
 
       beforeEach ->
-        lightGroup.on = true
-        lightGroup.brightness = initialBrightness
-        executeCommand()
+        @lightState.on = true
+        @lightState.bri = initialBrightness
+        chai.spy(@lights().setBrightness)
+
+        @executeCommand()
+
+        expect(@lights().setBrightness).to.have.been.called.once()
+        arguedBrightness = @lights().setBrightness.__spy.calls[0][0]
 
       it 'brightens the lights', ->
-        expect(lightGroup.brightness).to.be.greaterThan(initialBrightness)
+        expect(arguedBrightness).to.be.greaterThan(initialBrightness)
 
   describe 'decreasing the brightness', ->
-    executeCommand = ->
-      controller().decreaseBrightness()
+    beforeEach ->
+      @executeCommand = ->
+        @controller().decreaseBrightness()
 
     describe 'when the lights are off', ->
       beforeEach ->
-        lightGroup.on = false
-        executeCommand()
+        @lightState.on = false
+        chai.spy(@lights().setOn)
+        chai.spy(@controller().decreaseBrightness)
+
+        @executeCommand()
 
       it 'does not turn on the light', ->
-        expect(lightGroup.turnOn).not.to.have.been.called()
+        expect(@lights().setOn).not.to.have.been.called()
+
+      it 'does not decrease the brightness', ->
+        expect(@controller().decreaseBrightness).not.to.have.been.called()
 
     describe 'when the lights are on', ->
       initialBrightness = 50
+      arguedBrightness = undefined
 
       beforeEach ->
-        lightGroup.brightness = initialBrightness
-        lightGroup.on = true
-        executeCommand()
+        @lightState.on = true
+        @lightState.bri = initialBrightness
+        chai.spy(@lights().setBrightness)
+
+        @executeCommand()
+
+        expect(@lights().setBrightness).to.have.been.called.once()
+        arguedBrightness = @lights().setBrightness.__spy.calls[0][0]
 
       it 'dims the lights', ->
-        expect(lightGroup.brightness).to.be.lessThan(initialBrightness)
+        expect(arguedBrightness).to.be.lessThan(initialBrightness)

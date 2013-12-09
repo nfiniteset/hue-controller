@@ -6,13 +6,13 @@ module.exports = class LightsController
 
   toggle: ->
     if @lights.getOn()
-      @lights.turnOff()
+      @lights.setOn(false)
     else
-      @lights.turnOn()
+      @lights.setOn(true)
 
   increaseBrightness: ->
-    brightness = @lights.getBrightness()
-    @lights.turnOn()
+    brightness = parseInt @lights.getBrightness()
+    @lights.setOn(true)
     @lights.setBrightness(brightness + @BRIGHTNESS_INCREMENT)
 
   decreaseBrightness: ->

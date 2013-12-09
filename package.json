@@ -23,7 +23,8 @@
   "dependencies": {
     "coffee-script": "~1.6.3",
     "commander": "~2.0.0",
-    "autocmdr": "~0.0.4"
+    "autocmdr": "~0.0.4",
+    "node-hue-api": "~0.2.2"
   },
   "devDependencies": {
     "chai": "~1.8.1",
