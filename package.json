@@ -26,8 +26,8 @@
     "autocmdr": "~0.0.4",
     "node-hue-api": "~0.2.2",
     "node-powermate": "0.0.2",
-    "async": "~0.2.9",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "q": "~0.9.7"
   },
   "devDependencies": {
     "chai": "~1.8.1",

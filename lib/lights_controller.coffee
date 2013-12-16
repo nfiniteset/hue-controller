@@ -1,5 +1,3 @@
-
-
 module.exports = class LightsController
 
   BRIGHTNESS_INCREMENT: 20
@@ -7,7 +5,6 @@ module.exports = class LightsController
   MAX_BRIGHTNESS: 255
 
   constructor: (@lights) ->
-    console.log('LightsController#constructor')
 
   toggle: ->
     if @lights.getOn()
