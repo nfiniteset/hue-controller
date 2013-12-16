@@ -1,6 +1,6 @@
 module.exports = class LightsController
 
-  BRIGHTNESS_INCREMENT: 20
+  BRIGHTNESS_INCREMENT: 3
   MIN_BRIGHTNESS: 1
   MAX_BRIGHTNESS: 255
 

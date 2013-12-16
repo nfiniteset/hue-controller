@@ -1,3 +1,4 @@
+_ = require 'underscore'
 LightsCollection = require './lights_collection'
 
 module.exports = class LightsSource
@@ -24,9 +25,12 @@ module.exports = class LightsSource
     console.log(err)
 
   sync: (collection) ->
-    state = @_serializeCollection(collection)
-    for light in @lightsData
-      @bridge.setLightState(light.id, state)
+    @sync = _.throttle =>
+      state = @_serializeCollection(collection)
+      for light in @lightsData
+        @bridge.setLightState(light.id, state)
+    , 200
+    @sync()
 
   _serializeCollection: (collection) ->
     {
