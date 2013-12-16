@@ -1,13 +1,14 @@
 chai = require('chai')
-spies = require('chai-spies')
-chai.use(spies)
+sinonChai = require('sinon-chai')
+chai.use(sinonChai)
+sinon = require('sinon')
 
 module.exports = class MockLightsSource
 
   constructor: ->
 
-  fetch: chai.spy 'fetch', ->
+  fetch: sinon.spy ->
     console.log "MockLightsSource fetching"
 
-  sync: chai.spy 'sync', (value) ->
+  sync: sinon.spy (value) ->
     console.log "MockLightsSource syncing:", value

@@ -1,0 +1,4 @@
+--compilers coffee:coffee-script
+--require coffee-script
+--require test/support/test_helper.coffee
+--colors

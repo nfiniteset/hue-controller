@@ -24,12 +24,15 @@
     "coffee-script": "~1.6.3",
     "commander": "~2.0.0",
     "autocmdr": "~0.0.4",
-    "node-hue-api": "~0.2.2"
+    "node-hue-api": "~0.2.2",
+    "node-powermate": "0.0.2",
+    "async": "~0.2.9",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "chai": "~1.8.1",
     "mocha": "~1.15.1",
     "sinon": "~1.7.3",
-    "chai-spies": "~0.5.1"
+    "sinon-chai": "~2.4.0"
   }
 }

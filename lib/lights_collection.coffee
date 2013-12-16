@@ -16,9 +16,5 @@ module.exports = class LightsCollection
 
   setBrightness: (value) ->
     value = parseInt value
-
-    if value < 0
-      @setOn(false)
-    else
-      @brightness = value
-      @source.sync(@)
+    @brightness = value
+    @source.sync(@)

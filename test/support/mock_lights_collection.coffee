@@ -1,6 +1,7 @@
 chai = require('chai')
-spies = require('chai-spies')
-chai.use(spies)
+sinonChai = require('sinon-chai')
+chai.use(sinonChai)
+sinon = require('sinon')
 
 module.exports = class MockLightsCollection
 
@@ -8,11 +9,9 @@ module.exports = class MockLightsCollection
     @on = firstLightState.on
     @brightness = firstLightState.bri
 
-  setOn: chai.spy 'setOn', (value) ->
-    console.log "Setting on: #{value}"
+  setOn: sinon.spy (value) ->
 
-  setBrightness: chai.spy 'setBrightness', (value) ->
-    console.log "Setting brightness: #{value}"
+  setBrightness: sinon.spy (value) ->
 
   getOn: ->
     @on

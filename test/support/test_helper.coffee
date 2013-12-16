@@ -1,5 +1,7 @@
 chai = require('chai')
-spies = require('chai-spies')
-chai.use(spies)
+sinonChai = require('sinon-chai')
+chai.use(sinonChai)
 
+global.sinon = require('sinon')
 global.expect = chai.expect
+global.should = chai.should()
