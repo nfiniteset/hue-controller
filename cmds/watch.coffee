@@ -1,6 +1,6 @@
 'use strict';
 
-PowerMate = require('node-powermate')
+PowerMate = require('../lib/powermate')
 LightsSource = require('../lib/lights_source')
 LightsController = require('../lib/lights_controller')
 Bridge = require('../lib/bridge')
@@ -23,8 +23,9 @@ module.exports = (program) ->
           powermate.setBrightness(0)
           controller = new LightsController(lightsCollection)
 
-          powermate.on 'buttonDown', ->
+          powermate.on 'click', ->
             controller.toggle()
+
           powermate.on 'wheelTurn', (delta) ->
             if delta > 0
               controller.increaseBrightness()
