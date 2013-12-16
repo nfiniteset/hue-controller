@@ -34,7 +34,8 @@ module.exports = class LightsSource
 
   _serializeCollection: (collection) ->
     {
-      on: collection.on,
+      on: collection.on
       bri: collection.brightness
+      transitiontime: 2
     }
 
